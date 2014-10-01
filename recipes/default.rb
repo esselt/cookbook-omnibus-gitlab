@@ -21,7 +21,6 @@
 include_recipe 'openssh'
 include_recipe 'postfix'
 
-
 # Download package
 filename = ::File.basename(node['omnibusgitlab']['download_url'])
 remote_file "#{Chef::Config['file_cache_path']}/#{filename}" do
@@ -34,9 +33,14 @@ end
 directory '/etc/gitlab'
 template '/etc/gitlab/gitlab.rb' do
   source 'gitlab.erb'
-  mode 00644
+  mode 00600
   variables :config => node['omnibusgitlab']
   notifies :run, 'execute[gitlab-reconfigure]'
+end
+
+# Create SSL dir
+directory '/etc/gitlab/ssl' do
+  mode 00700
 end
 
 # Install package

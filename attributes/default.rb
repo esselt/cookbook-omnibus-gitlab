@@ -19,11 +19,13 @@
 
 case node['platform']
 when 'ubuntu'
-  default['omnibusgitlab']['download_url']    = 'https://downloads-packages.s3.amazonaws.com/ubuntu-12.04/gitlab_7.1.1-omnibus.1-1_amd64.deb'
+  if node['platform_version'] == '12.04'
+    default['omnibusgitlab']['download_url']  = 'https://downloads-packages.s3.amazonaws.com/ubuntu-12.04/gitlab_7.3.1-omnibus-1_amd64.deb'
+  elsif node['platform_version'] == '14.04'
+    default['omnibusgitlab']['download_url']  = 'https://downloads-packages.s3.amazonaws.com/ubuntu-14.04/gitlab_7.3.1-omnibus-1_amd64.deb'
+  end
 when 'debian'
-  default['omnibusgitlab']['download_url']    = 'https://downloads-packages.s3.amazonaws.com/debian-7.5/gitlab_7.1.1-omnibus-1_amd64.deb'
-when 'centos'
-  default['omnibusgitlab']['download_url']    = 'https://downloads-packages.s3.amazonaws.com/centos-6.5/gitlab-7.1.1_omnibus-1.el6.x86_64.rpm'
+  default['omnibusgitlab']['download_url']    = 'https://downloads-packages.s3.amazonaws.com/debian-7.6/gitlab_7.3.1-omnibus-1_amd64.deb'
 end
 
 default['omnibusgitlab']['site_url']          = node['fqdn']
@@ -42,6 +44,8 @@ default['omnibusgitlab']['ldap_bind_dn']      = nil
 default['omnibusgitlab']['ldap_password']     = nil
 default['omnibusgitlab']['ldap_allow_username_or_email_login'] = true
 default['omnibusgitlab']['ldap_base']         = nil
+
+default['omnibusgitlab']['ssl_enabled']       = false
 
 default['omnibusgitlab']['backup_enabled']    = false
 default['omnibusgitlab']['backup_path']       = nil
