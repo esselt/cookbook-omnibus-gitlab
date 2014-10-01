@@ -10,6 +10,7 @@ gitlab_rails['gitlab_support_email'] = '<%= @config['support_email'] %>'
 gitlab_rails['gitlab_default_can_create_group'] = <%= @config['user_can_create_groups'] %>
 <%= "git_data_dir = '#{@config['repo_dir']}'" if @config['repo_dir'] %>
 <%= "gitlab_rails['backup_path'] = '#{@config['backup_path']}'" if @config['backup_path'] %>
+<%= "nginx['redirect_http_to_https'] = true" if @config['ssl_enabled'] %>
 
 <% if @config['ldap_enabled'] %>
 # LDAP config
@@ -20,10 +21,6 @@ gitlab_rails['ldap_enabled'] = true
 <%= "gitlab_rails['ldap_method'] = '#{@config['ldap_method']}'" if @config['ldap_method'] %>
 <%= "gitlab_rails['ldap_bind_dn'] = '#{@config['ldap_bind_dn']}'" if @config['ldap_bind_dn'] %>
 <%= "gitlab_rails['ldap_password'] = '#{@config['ldap_password']}'" if @config['ldap_password'] %>
-<%= "gitlab_rails['ldap_allow_username_or_email_login'] = '#{@config['ldap_allow_username_or_email_login']}'" if @config['ldap_allow_username_or_email_login'] %>
+<%= "gitlab_rails['ldap_allow_username_or_email_login'] = #{@config['ldap_allow_username_or_email_login']}" if @config['ldap_allow_username_or_email_login'] %>
 <%= "gitlab_rails['ldap_base'] = '#{@config['ldap_base']}'" if @config['ldap_base'] %>
-<% end %>
-
-<% if @config['ssl_enabled'] %>
-nginx['redirect_http_to_https'] = true
 <% end %>
