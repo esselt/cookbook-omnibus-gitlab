@@ -59,6 +59,13 @@ end
 execute 'gitlab-reconfigure' do
   command "/opt/gitlab/bin/gitlab-ctl reconfigure"
   action :nothing
+  notifies :run, 'execute[gitlab-restart]'
+end
+
+# Run restart only after reconfigure
+execute 'gitlab-restart' do
+  command "/opt/gitlab/bin/gitlab-ctl restart"
+  action :nothing
 end
 
 # Create repo dir if it does not exist

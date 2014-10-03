@@ -20,12 +20,12 @@
 case node['platform']
 when 'ubuntu'
   if node['platform_version'] == '12.04'
-    default['omnibusgitlab']['download_url']  = 'https://downloads-packages.s3.amazonaws.com/ubuntu-12.04/gitlab_7.3.1-omnibus-1_amd64.deb'
+    default['omnibusgitlab']['download_url']  = 'https://downloads-packages.s3.amazonaws.com/ubuntu-12.04/gitlab_7.3.2-omnibus-1_amd64.deb'
   elsif node['platform_version'] == '14.04'
-    default['omnibusgitlab']['download_url']  = 'https://downloads-packages.s3.amazonaws.com/ubuntu-14.04/gitlab_7.3.1-omnibus-1_amd64.deb'
+    default['omnibusgitlab']['download_url']  = 'https://downloads-packages.s3.amazonaws.com/ubuntu-14.04/gitlab_7.3.2-omnibus-1_amd64.deb'
   end
 when 'debian'
-  default['omnibusgitlab']['download_url']    = 'https://downloads-packages.s3.amazonaws.com/debian-7.6/gitlab_7.3.1-omnibus-1_amd64.deb'
+  default['omnibusgitlab']['download_url']    = 'https://downloads-packages.s3.amazonaws.com/debian-7.6/gitlab_7.3.2-omnibus-1_amd64.deb'
 end
 
 default['omnibusgitlab']['site_url']          = node['fqdn']

@@ -4,7 +4,7 @@ maintainer_email 'boye.holden@hist.no'
 license          'Apache 2.0'
 description      'Installs/Configures GitLab with the omnibus package'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '7.3.1'
+version          '7.3.2'
 
 %w(openssh postfix cron).each do |pkg|
   depends pkg
