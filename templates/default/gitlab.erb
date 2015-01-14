@@ -34,5 +34,7 @@ EOS
 
 <% if @config['ssl_enabled'] %>
 # SSL config
+gitlab_rails['gitlab_https'] = true
+gitlab_rails['gitlab_port'] = 443
 nginx['redirect_http_to_https'] = true
 <% end %>
