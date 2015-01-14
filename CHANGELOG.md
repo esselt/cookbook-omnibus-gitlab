@@ -3,6 +3,10 @@ CHANGELOG
 
 This file is used to list changes made in each version of the omnibus-gitlab cookbook.
 
+7.6.2
+-----
+- [Boye Holden] - Updated to match release 7.6.2 of omnibus package, restart after reconfigure
+
 7.3.2
 -----
 - [Boye Holden] - Updated to match release 7.3.2 of omnibus package, restart after reconfigure

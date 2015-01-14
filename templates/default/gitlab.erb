@@ -14,19 +14,25 @@ gitlab_rails['gitlab_default_can_create_group'] = <%= @config['user_can_create_g
 <% if @config['ldap_enabled'] %>
 # LDAP config
 gitlab_rails['ldap_enabled'] = true
-<%= "gitlab_rails['ldap_host'] = '#{@config['ldap_host']}'" if @config['ldap_host'] %>
-<%= "gitlab_rails['ldap_port'] = '#{@config['ldap_port']}'" if @config['ldap_port'] %>
-<%= "gitlab_rails['ldap_uid'] = '#{@config['ldap_uid']}'" if @config['ldap_uid'] %>
-<%= "gitlab_rails['ldap_method'] = '#{@config['ldap_method']}'" if @config['ldap_method'] %>
-<%= "gitlab_rails['ldap_bind_dn'] = '#{@config['ldap_bind_dn']}'" if @config['ldap_bind_dn'] %>
-<%= "gitlab_rails['ldap_password'] = '#{@config['ldap_password']}'" if @config['ldap_password'] %>
-<%= "gitlab_rails['ldap_allow_username_or_email_login'] = #{@config['ldap_allow_username_or_email_login']}" if @config['ldap_allow_username_or_email_login'] %>
-<%= "gitlab_rails['ldap_base'] = '#{@config['ldap_base']}'" if @config['ldap_base'] %>
+gitlab_rails['ldap_servers'] = YAML.load <<-EOS
+    main:
+        label:    'LDAP'
+
+        host:     '<%= @config['ldap_host'] %>'
+        port:     <%= @config['ldap_port'] || '636' %>
+        uid:      '<%= @config['ldap_uid'] %>'
+        method:   '<%= @config['ldap_method'] %>'
+        bind_dn:  '<%= @config['ldap_bind_dn'] %>'
+        password: '<%= @config['ldap_password'] %>'
+
+        active_directory: <%= @config['ldap_is_ad'].to_s %>
+        allow_username_or_email_login: <%= @config['ldap_allow_username_or_email_login'].to_s %>
+
+        base:     '<%= @config['ldap_base'].to_s %>'
+EOS
 <% end %>
 
 <% if @config['ssl_enabled'] %>
 # SSL config
-gitlab_rails['gitlab_https'] = true
-gitlab_rails['gitlab_port'] = 443
 nginx['redirect_http_to_https'] = true
 <% end %>

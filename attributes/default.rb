@@ -20,12 +20,12 @@
 case node['platform']
 when 'ubuntu'
   if node['platform_version'] == '12.04'
-    default['omnibusgitlab']['download_url']  = 'https://downloads-packages.s3.amazonaws.com/ubuntu-12.04/gitlab_7.3.2-omnibus-1_amd64.deb'
+    default['omnibusgitlab']['download_url']  = 'https://downloads-packages.s3.amazonaws.com/ubuntu-12.04/gitlab_7.6.2-omnibus.5.3.0.ci.1-1_amd64.deb'
   elsif node['platform_version'] == '14.04'
-    default['omnibusgitlab']['download_url']  = 'https://downloads-packages.s3.amazonaws.com/ubuntu-14.04/gitlab_7.3.2-omnibus-1_amd64.deb'
+    default['omnibusgitlab']['download_url']  = 'https://downloads-packages.s3.amazonaws.com/ubuntu-14.04/gitlab_7.6.2-omnibus.5.3.0.ci.1-1_amd64.deb'
   end
 when 'debian'
-  default['omnibusgitlab']['download_url']    = 'https://downloads-packages.s3.amazonaws.com/debian-7.6/gitlab_7.3.2-omnibus-1_amd64.deb'
+  default['omnibusgitlab']['download_url']    = 'https://downloads-packages.s3.amazonaws.com/debian-7.7/gitlab_7.6.2-omnibus.5.3.0.ci.1-1_amd64.deb'
 end
 
 default['omnibusgitlab']['site_url']          = node['fqdn']
@@ -36,6 +36,7 @@ default['omnibusgitlab']['support_email']     = "gitlab@#{node['fqdn']}"
 default['omnibusgitlab']['user_can_create_groups'] = true
 
 default['omnibusgitlab']['ldap_enabled']      = false
+default['omnibusgitlab']['ldap_is_ad']        = true
 default['omnibusgitlab']['ldap_host']         = nil
 default['omnibusgitlab']['ldap_port']         = nil
 default['omnibusgitlab']['ldap_uid']          = nil
